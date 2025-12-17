@@ -30,21 +30,41 @@ $files | ForEach-Object{
 
     if ($imageExtensions -contains $fileExtension){
         Write-Host "Image File: $fileName"
-        Move-Item -Path $file.FullName -Destination "~\Downloads\Images\$fileName" 
+        try {
+            Move-Item -Path $file.FullName -Destination "~\Downloads\Images\$fileName" -ErrorAction Stop
+        } catch {
+            Write-Host "Error moving image file: $fileName, it is likely a duplicate or same name"
+        }
     } 
     elseif ($documentExtensions -contains $fileExtension){
         Write-Host "Document File: $fileName"
-        Move-Item -Path $file.FullName -Destination "~\Downloads\Documents\$fileName" 
+        try {
+            Move-Item -Path $file.FullName -Destination "~\Downloads\Documents\$fileName" -ErrorAction Stop
+        } catch {
+            Write-Host "Error moving document file: $fileName, it is likely a duplicate or same name"
+        }
     } 
     elseif ($videoExtensions -contains $fileExtension){
         Write-Host "Video File: $fileName"
-        Move-Item -Path $file.FullName -Destination "~\Downloads\Videos\$fileName" 
+        try {
+            Move-Item -Path $file.FullName -Destination "~\Downloads\Videos\$fileName" -ErrorAction Stop
+        } catch {
+            Write-Host "Error moving video file: $fileName, it is likely a duplicate or same name"
+        }
     } 
     elseif ($compressedExtensions -contains $fileExtension){
         Write-Host "Compressed File: $fileName"
-        Move-Item -Path $file.FullName -Destination "~\Downloads\Compressed\$fileName" 
+        try {
+            Move-Item -Path $file.FullName -Destination "~\Downloads\Compressed\$fileName" -ErrorAction Stop
+        } catch {
+            Write-Host "Error moving compressed file: $fileName, it is likely a duplicate or same name"
+        }
     } else {
         Write-Host "Unknown File Type: $fileName"
-        Move-Item -Path $file.FullName -Destination "~\Downloads\Other\$fileName"
+        try {
+            Move-Item -Path $file.FullName -Destination "~\Downloads\Other\$fileName"
+        } catch {
+            Write-Host "Error moving unknown file type: $fileName, it is likely a duplicate or same name"
+        }
     }
 }
