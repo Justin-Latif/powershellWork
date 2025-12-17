@@ -6,13 +6,6 @@ $imageExtensions = @(".jpg", ".jpeg", ".png", ".gif")
 $documentExtensions = @(".pdf", ".docx", ".txt")
 $videoExtensions = @(".mp4", ".mov")
 
-$files | ForEach-Object{
-    $file = $_
-    $fileName = $file.Name
-    $fileExtension = $file.Extension
-    Write-Host "File Name: $fileName, File Extension: $fileExtension"
-}
-
 if (-not (Test-Path -Path "~\Downloads\Images")){
     New-Item -ItemType Directory -Path "~\Downloads\Images"
 }
