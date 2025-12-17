@@ -31,7 +31,7 @@ $files | ForEach-Object{
     if ($imageExtensions -contains $fileExtension){
         Write-Host "Image File: $fileName"
         try {
-            Move-Item -Path $file.FullName -Destination "$HOME/Downloads/Images/$fileName" -ErrorAction Stop
+            Move-Item -Path $_.FullName -Destination "$HOME/Downloads/Images/$fileName" -ErrorAction Stop
         } catch {
             Write-Host "Error moving image file: $fileName, it is likely a duplicate or same name"
         }
@@ -39,7 +39,7 @@ $files | ForEach-Object{
     elseif ($documentExtensions -contains $fileExtension){
         Write-Host "Document File: $fileName"
         try {
-            Move-Item -Path $file.FullName -Destination "$HOME/Downloads/Documents/$fileName" -ErrorAction Stop
+            Move-Item -Path $_.FullName -Destination "$HOME/Downloads/Documents/$fileName" -ErrorAction Stop
         } catch {
             Write-Host "Error moving document file: $fileName, it is likely a duplicate or same name"
         }
@@ -47,7 +47,7 @@ $files | ForEach-Object{
     elseif ($videoExtensions -contains $fileExtension){
         Write-Host "Video File: $fileName"
         try {
-            Move-Item -Path $file.FullName -Destination "$HOME/Downloads/Videos/$fileName" -ErrorAction Stop
+            Move-Item -Path $_.FullName -Destination "$HOME/Downloads/Videos/$fileName" -ErrorAction Stop
         } catch {
             Write-Host "Error moving video file: $fileName, it is likely a duplicate or same name"
         }
@@ -55,14 +55,14 @@ $files | ForEach-Object{
     elseif ($compressedExtensions -contains $fileExtension){
         Write-Host "Compressed File: $fileName"
         try {
-            Move-Item -Path $file.FullName -Destination "$HOME/Downloads/Compressed/$fileName" -ErrorAction Stop
+            Move-Item -Path $_.FullName -Destination "$HOME/Downloads/Compressed/$fileName" -ErrorAction Stop
         } catch {
             Write-Host "Error moving compressed file: $fileName, it is likely a duplicate or same name"
         }
     } else {
         Write-Host "Unknown File Type: $fileName"
         try {
-            Move-Item -Path $file.FullName -Destination "$HOME/Downloads/Other/$fileName"
+            Move-Item -Path $_.FullName -Destination "$HOME/Downloads/Other/$fileName"
         } catch {
             Write-Host "Error moving unknown file type: $fileName, it is likely a duplicate or same name"
         }
